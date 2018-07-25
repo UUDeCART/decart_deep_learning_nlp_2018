@@ -13,7 +13,6 @@ cfg = K.tf.ConfigProto()
 cfg.gpu_options.allow_growth = True
 cfg.gpu_options.per_process_gpu_memory_fraction=0.333
 K.set_session(K.tf.Session(config=cfg))
-keras.__version__
 ```
 
 Where each user/group will need to have `CUDA_VISIBLE_DEVICES`  as 0, 1, 2, or 3.
