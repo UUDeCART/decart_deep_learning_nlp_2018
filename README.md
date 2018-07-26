@@ -17,3 +17,26 @@ K.set_session(K.tf.Session(config=cfg))
 
 Where each user/group will need to have `CUDA_VISIBLE_DEVICES`  as 0, 1, 2, or 3.
 
+## Running entirely with CPUs
+
+Not everything in deep learning requires GPU access. For example, if we start with a pre-trained model we are often just re-training the last (e.g. classification) layer which can often be easily done with just CPUs.
+
+There a couple of tricks we can do to force tensorflow to use CPUs instead of GPUs.
+
+First we can set the `CUDA_VISIBLE_DEVICES` to nothing
+
+```Python
+
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+```
+
+Second, we can set our TensorFlow configuration `device_count` value to 0.
+
+```Python
+config = tf.ConfigProto(
+        device_count = {'GPU': 0}
+    )
+sess = tf.Session(config=config)
+```
+
